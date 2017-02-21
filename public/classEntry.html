@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utlf-8" />
+  <title>"Class Entry Page"</title>
+  <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDKuQwTHSOPWOBAI-RGGEhGb7wDr_jVJog",
+      authDomain: "basicstudybuddy.firebaseapp.com",
+      databaseURL: "https://basicstudybuddy.firebaseio.com",
+      storageBucket: "basicstudybuddy.appspot.com",
+      messagingSenderId: "1074054316139"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script type="text/javascript">
+            var database = firebase.database().ref("/Users/" + window.userName);
+
+            function writeUserData(one){
+              var classList = [one];
+              database.child("classes").set({
+                classes: classlist
+              });
+            }
+
+            function Redirect() {
+              var one = document.getElementById('class1').value;
+              if(one != null && one != ''){
+                alert("trying to write data...");
+                writeUserData(one);
+                alert("wrote that data to firebase");
+                window.location="https://basicstudybuddy.firebaseapp.com/main.html";
+             }else{
+               alert("Enter Required Fields bit4ch");
+             }
+            }
+
+      </script>
+
+</head>
+<body>
+
+<center><h1>STUDY BUDDY</h1></center>
+<center><h3>What classes are you taking?</h3></center>
+<form>
+  <label for = "class1">Class1:</label>
+  <input id="class1" type="text" placeholder = "ECE111" /></br>
+  <label for = "class2">Class2:</label>
+  <input id="class2" type="text" placeholder = "CSE120" /></br>
+  <label for = "class3">Class3:</label>
+  <input id="class3" type="text" placeholder = "MGT112" /></br>
+  <label for = "class4">Class4:</label>
+  <input id="class4" type="text" placeholder = "PHYS2C" /></br></br>
+  <input type="button" value="Submit" onclick = "Redirect();"/>
+</form>
+
+<!---
+<center>
+  <h2><a href="main.html"> ENTER </a></h2>
+</center>
+-->
+</body>
+
+</html>
