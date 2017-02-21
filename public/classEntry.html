@@ -17,24 +17,34 @@
   </script>
   <script type="text/javascript">
 
+            //global variable wrapped in JSON from index/login page retrieved from facebook
             var userName = JSON.parse(localStorage.getItem("name"));
+
+            //set up firebase link targets user endpoints
             var database = firebase.database().ref("/Users/" + userName);
 
+            //grabs all four classes from the entry table
             function Redirect() {
               var one = document.getElementById('class1').value;
               var two = document.getElementById('class2').value;
               var three = document.getElementById('class3').value;
               var four = document.getElementById('class4').value;
 
-
+              //checks to see if null
+              //implemented required (couldn't do a submission b.c needed onclick)
               if(one != null && one != '' && two != null && two != '' && three != null && three != '' && four != null && four != ''){
+
+                //overwrites the class list into that database user endpoint
                 var classList = [one,two,three,four];
                 database.child("classes").set({
                   classList
                 });
+
+                //segues to the main page
                 window.location="https://basicstudybuddy.firebaseapp.com/main.html";
 
              }else{
+               //needs to fill required fields
                alert("Enter Required Fields bit4ch");
              }
             }

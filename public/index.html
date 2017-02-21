@@ -93,14 +93,20 @@
 
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
+
+      //get the username store it as a global variable wrappe din JSON
       var name = response.name;
       localStorage.setItem("name", JSON.stringify(name));
+
+      //log to console
       console.log('Successful login for: ' + response.name);
 
+      //add new user/continue from existing user
       database.set({
         name: response.name
       });
 
+      //segue to class entry page
        window.location = "https://basicstudybuddy.firebaseapp.com/classEntry.html";
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
@@ -109,7 +115,7 @@
 
   }
 </script>
-<center><fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+<center><fb:login-button scope="public_profile,email,user_friends" onlogin="checkLoginState();">
 </fb:login-button></center>
 <div
   class="fb-like"

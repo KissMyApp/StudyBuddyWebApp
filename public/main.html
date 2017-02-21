@@ -18,13 +18,49 @@
   </script>
   <script type="text/javascript">
 
+    //store into global variable as JSON object
     var userName = JSON.parse(localStorage.getItem("name"));
     const preObject = document.getElementById('object');
     const database = firebase.database().ref("/Users/" + userName + "/classes").child("classList");
+
 <!-- TODO-->
-    database.on('value', snap => {
-      preObject.innerText = JSON.stringify(snap.val(), null, 3);
-    })
+
+database.on('value', function(snapshot) {
+  snapshot.forEach(function(childSnapshot) {
+    var childKey = childSnapshot.key;
+    var childData = childSnapshot.val();
+
+    switch(childKey){
+
+      case "0":
+        //alert("class 1: " + childData);
+        document.getElementById("class1").innerHTML = childData;
+
+        break;
+
+      case "1":
+
+        //alert("class 2: " + childData);
+        document.getElementById("class2").innerHTML = childData;
+
+        break;
+
+      case "2":
+
+        //alert("class 3: " + childData);
+        document.getElementById("class3").innerHTML = childData;
+
+        break;
+
+      case "3":
+        //alert("class 4: " + childData);
+        document.getElementById("class4").innerHTML = childData;
+
+        break;
+    }
+
+  });
+});
 
   </script>
 </head>
@@ -45,21 +81,21 @@
 <br/>
 
 <!-- TODO-->
-<pre id="object"></pre>
 
-  <h3><a href="class1.html">Class 1:</a></h3>
+  <a href ="class1.html"><h3 id="class1"></h3></a>
+  <!-- <h3><a href="class1.html">Class 1:</a></h3>
+  -->
+<br/>
+
+<a href ="class2.html"><h3 id="class2"></h3></a>
 <br/>
 
 
-  <h3><a href="class2.html">Class 2:</a></h3>
+<a href ="class3.html"><h3 id="class3"></h3></a>
 <br/>
 
 
-  <h3><a href="class3.html">Class 3:</a></h3>
-<br/>
-
-
-  <h3><a href="class4.html">Class 4:</a></h3>
+<a href ="class4.html"><h3 id="class4"></h3></a>
 <br/>
 
 
