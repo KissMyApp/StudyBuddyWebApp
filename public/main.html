@@ -35,28 +35,27 @@ database.on('value', function(snapshot) {
       case "0":
         //alert("class 1: " + childData);
         document.getElementById("class1").innerHTML = childData;
-
+        localStorage.setItem("firstClass", JSON.stringify(childData));
         break;
 
       case "1":
 
         //alert("class 2: " + childData);
         document.getElementById("class2").innerHTML = childData;
-
+        localStorage.setItem("secondClass", JSON.stringify(childData));
         break;
 
       case "2":
 
         //alert("class 3: " + childData);
         document.getElementById("class3").innerHTML = childData;
-
         break;
 
       case "3":
         //alert("class 4: " + childData);
         document.getElementById("class4").innerHTML = childData;
-
         break;
+
     }
 
   });

@@ -95,7 +95,7 @@
     FB.api('/me', function(response) {
 
       //get the username store it as a global variable wrappe din JSON
-      var name = response.name;
+      var name = response.name.replace("\.", "");
       localStorage.setItem("name", JSON.stringify(name));
 
       //log to console
@@ -103,7 +103,7 @@
 
       //add new user/continue from existing user
       database.set({
-        name: response.name
+        name: name
       });
 
       //segue to class entry page
