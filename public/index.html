@@ -93,16 +93,15 @@
 
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
-      var userName = response.name;
+      var name = response.name;
+      localStorage.setItem("name", JSON.stringify(name));
       console.log('Successful login for: ' + response.name);
-      console.log("writing username to firebase" + response.email);
 
       database.set({
         name: response.name
       });
 
-      <!-- window.location = "https://basicstudybuddy.firebaseapp.com/classEntry.html";
--->
+       window.location = "https://basicstudybuddy.firebaseapp.com/classEntry.html";
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
     });

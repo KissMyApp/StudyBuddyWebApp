@@ -16,21 +16,33 @@
     firebase.initializeApp(config);
   </script>
   <script type="text/javascript">
-            var database = firebase.database().ref("/Users/" + window.userName);
 
-            function writeUserData(one){
-              var classList = [one];
-              database.child("classes").set({
-                classes: classlist
+            var userName = JSON.parse(localStorage.getItem("name"));
+            var database = firebase.database().ref("/Users/" + userName);
+
+            function writeUserData(one, two, three, four){
+
+              var classList = [one, two];
+
+              database.child().set({
+                classList
               });
             }
 
             function Redirect() {
               var one = document.getElementById('class1').value;
+              var two = document.getElementById('class2').value;
+              var three = document.getElementById('class3').value;
+              var four = document.getElementById('class4').value;
+
+
               if(one != null && one != ''){
-                alert("trying to write data...");
-                writeUserData(one);
-                alert("wrote that data to firebase");
+                <!--writeUserData(one, two);-->
+                var classList = [one,two,three,four];
+                database.child("classes").set({
+                  classList
+                });
+
                 window.location="https://basicstudybuddy.firebaseapp.com/main.html";
              }else{
                alert("Enter Required Fields bit4ch");
