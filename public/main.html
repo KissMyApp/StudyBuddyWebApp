@@ -21,7 +21,7 @@
     var userName = JSON.parse(localStorage.getItem("name"));
     const preObject = document.getElementById('object');
     const database = firebase.database().ref("/Users/" + userName + "/classes").child("classList");
-
+<!-- TODO-->
     database.on('value', snap => {
       preObject.innerText = JSON.stringify(snap.val(), null, 3);
     })
@@ -43,9 +43,9 @@
 
   <h3>Current Classes</h3>
 <br/>
-<pre id="object">
 
-</pre>
+<!-- TODO-->
+<pre id="object"></pre>
 
   <h3><a href="class1.html">Class 1:</a></h3>
 <br/>
