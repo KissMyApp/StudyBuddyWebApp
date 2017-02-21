@@ -3,7 +3,32 @@
 <head>
   <meta charset="utlf-8" />
   <title>"Main Dashboard"</title>
+
+  <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDKuQwTHSOPWOBAI-RGGEhGb7wDr_jVJog",
+      authDomain: "basicstudybuddy.firebaseapp.com",
+      databaseURL: "https://basicstudybuddy.firebaseio.com",
+      storageBucket: "basicstudybuddy.appspot.com",
+      messagingSenderId: "1074054316139"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script type="text/javascript">
+
+    var userName = JSON.parse(localStorage.getItem("name"));
+    const preObject = document.getElementById('object');
+    const database = firebase.database().ref("/Users/" + userName + "/classes").child("classList");
+
+    database.on('value', snap => {
+      preObject.innerText = JSON.stringify(snap.val(), null, 3);
+    })
+
+  </script>
 </head>
+
 <body>
 
 <center><h1>STUDY BUDDY</h1></center>
@@ -18,7 +43,9 @@
 
   <h3>Current Classes</h3>
 <br/>
+<pre id="object">
 
+</pre>
 
   <h3><a href="class1.html">Class 1:</a></h3>
 <br/>

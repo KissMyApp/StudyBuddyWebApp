@@ -20,15 +20,6 @@
             var userName = JSON.parse(localStorage.getItem("name"));
             var database = firebase.database().ref("/Users/" + userName);
 
-            function writeUserData(one, two, three, four){
-
-              var classList = [one, two];
-
-              database.child().set({
-                classList
-              });
-            }
-
             function Redirect() {
               var one = document.getElementById('class1').value;
               var two = document.getElementById('class2').value;
@@ -36,14 +27,13 @@
               var four = document.getElementById('class4').value;
 
 
-              if(one != null && one != ''){
-                <!--writeUserData(one, two);-->
+              if(one != null && one != '' && two != null && two != '' && three != null && three != '' && four != null && four != ''){
                 var classList = [one,two,three,four];
                 database.child("classes").set({
                   classList
                 });
-
                 window.location="https://basicstudybuddy.firebaseapp.com/main.html";
+
              }else{
                alert("Enter Required Fields bit4ch");
              }

@@ -1,0 +1,14 @@
+[debug] ----------------------------------------------------------------------
+[debug] Command:      /usr/local/bin/node /usr/local/bin/firebase open
+[debug] CLI Version:  3.3.0
+[debug] Platform:     darwin
+[debug] Node Version: v6.9.5
+[debug] Time:         Tue Feb 21 2017 04:39:40 GMT-0800 (PST)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[debug] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase"]
+[debug] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/basicstudybuddy  
+ Tue Feb 21 2017 04:39:40 GMT-0800 (PST)
+[debug] <<< HTTP RESPONSE 200
+[debug] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/basicstudybuddy/tokens  
+ Tue Feb 21 2017 04:39:42 GMT-0800 (PST)
