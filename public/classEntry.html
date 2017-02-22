@@ -23,6 +23,9 @@
             //set up firebase link targets user endpoints
             var database = firebase.database().ref("/Users/" + userName);
 
+            //set up firebase link targets class endpoints
+            var classRef = firebase.database().ref("/Classes");
+
             //grabs all four classes from the entry table
             function Redirect() {
               var one = document.getElementById('class1').value;
@@ -39,6 +42,14 @@
                 database.child("classes").set({
                   classList
                 });
+
+                classList.forEach(function(entry){
+                  console.log(entry);
+                  classRef = firebase.database().ref("/Classes/" + entry);
+                  classRef.child(userName).set({userName});
+                  //classRef.child(entry + "/" + userName).set({ userName});
+                });
+
 
                 //segues to the main page
                 window.location="https://basicstudybuddy.firebaseapp.com/main.html";
