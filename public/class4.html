@@ -3,17 +3,49 @@
 <head>
   <meta charset="utlf-8" />
   <title>"Class 4"</title>
+  <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDKuQwTHSOPWOBAI-RGGEhGb7wDr_jVJog",
+      authDomain: "basicstudybuddy.firebaseapp.com",
+      databaseURL: "https://basicstudybuddy.firebaseio.com",
+      storageBucket: "basicstudybuddy.appspot.com",
+      messagingSenderId: "1074054316139"
+    };
+    firebase.initializeApp(config);
+  </script>
+
+  <script type="text/javascript">
+  var userName = JSON.parse(localStorage.getItem("name"));
+  const database = firebase.database().ref("/Users/" + userName + "/classes").child("classList");
+  database.on('value', function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+      var childKey = childSnapshot.key;
+      var childData = childSnapshot.val();
+
+      switch(childKey){
+        case "3":
+          document.getElementById("class4").innerHTML = childData;
+          //localStorage.setItem("secondClass", JSON.stringify(childData));
+          break;
+      }
+
+    });
+  });
+
+      </script>
 </head>
 <body>
 
 <center><h1>STUDY BUDDY</h1></center></br>
 
   <center>
-    <h1>Class 4</h1><br/>
+    <h3 id="class4"></h3><br/>
   </center>
 
   <center>
-    <h3>class list example</h3>
+    <h3>classmate list example</h3>
 
     <h3>William Quan</h3>
     <h3>Issaic Chu</h3>

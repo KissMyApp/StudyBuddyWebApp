@@ -89,13 +89,15 @@
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
-    var database = firebase.database().ref("/Users");
+    var database;// = firebase.database().ref("/Users");
 
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
 
       //get the username store it as a global variable wrappe din JSON
       var name = response.name.replace("\.", "");
+
+      database = firebase.database().ref("Users/" + name);
       localStorage.setItem("name", JSON.stringify(name));
 
       //log to console
@@ -107,7 +109,7 @@
       });
 
       //segue to class entry page
-       window.location = "https://basicstudybuddy.firebaseapp.com/classEntry.html";
+       //window.location = "https://basicstudybuddy.firebaseapp.com/classEntry.html";
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
     });

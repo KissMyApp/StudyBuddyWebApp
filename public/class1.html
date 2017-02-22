@@ -3,24 +3,140 @@
 <head>
   <meta charset="utlf-8" />
   <title>"Class 1"</title>
+  <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDKuQwTHSOPWOBAI-RGGEhGb7wDr_jVJog",
+      authDomain: "basicstudybuddy.firebaseapp.com",
+      databaseURL: "https://basicstudybuddy.firebaseio.com",
+      storageBucket: "basicstudybuddy.appspot.com",
+      messagingSenderId: "1074054316139"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '398816233805361',
+      xfbml      : true,
+      version    : 'v2.8'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+   function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      testAPI();
+    } else if (response.status === 'not_authorized') {
+      // The person is logged into Facebook, but not your app.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+    } else {
+      // The person is not logged into Facebook, so we're not sure if
+      // they are logged into this app or not.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into Facebook.';
+    }
+  }
+
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+  function getFriendsList(){
+  FB.api('me/friends', function(response) {
+        // Insert your code here
+        console.log(response);
+        alert(response);
+    });
+  }
+
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '398816233805361',
+    cookie     : true,  // enable cookies to allow the server to access
+                        // the session
+    xfbml      : true,  // parse social plugins on this page
+    version    : 'v2.8' // use graph api version 2.8
+  });
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+
+  };
+
+  // Here we run a very simple test of the Graph API after login is
+  // successful.  See statusChangeCallback() for when this call is made.
+  function testAPI() {
+    var database = firebase.database().ref("/Users");
+    getFriendsList();
+    console.log('Welcome!  Fetching your information.... ');
+
+/*
+    FB.api(
+    "/{user-id}/friends",
+    function (response) {
+      alert(response.data);
+      if (response && !response.error) {
+
+        alert(response.data);
+      }else{
+        alert("error finding the friendslist");
+      }
+    }
+);
+*/
+}
+</script>
+
   <script type="text/javascript">
+  var userName = JSON.parse(localStorage.getItem("name"));
+  const database = firebase.database().ref("/Users/" + userName + "/classes").child("classList");
 
-            //global variable wrapped
-            //var firstC = JSON.parse(localStorage.getItem("firstClass"));
-            //document.getElementById("firstClass").innerHTML = firstC;
 
+  database.on('value', function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+      var childKey = childSnapshot.key;
+      var childData = childSnapshot.val();
+
+      switch(childKey){
+        case "0":
+          document.getElementById("class1").innerHTML = childData;
+          //localStorage.setItem("firstClass", JSON.stringify(childData));
+          break;
+      }
+    });
+  });
       </script>
+
 </head>
 <body>
 
 <center><h1>STUDY BUDDY</h1></center></br>
 
   <center>
-    <h1 id="class1"></h1><br/>
+    <h3 id="class1"></h3><br/>
   </center>
 
   <center>
-    <h3>class list example</h3>
+    <h3>classmate list example</h3>
 
     <h3>William Quan</h3>
     <h3>Issaic Chu</h3>
