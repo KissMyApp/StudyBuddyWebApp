@@ -20,10 +20,8 @@
 
     //store into global variable as JSON object
     var userName = JSON.parse(localStorage.getItem("name"));
-    const preObject = document.getElementById('object');
+    //const preObject = document.getElementById('object');
     const database = firebase.database().ref("/Users/" + userName + "/classes").child("classList");
-
-<!-- TODO-->
 
 database.on('value', function(snapshot) {
   snapshot.forEach(function(childSnapshot) {
