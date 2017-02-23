@@ -64,7 +64,7 @@
   FB.api('me/friends', function(response) {
         // Insert your code here
         console.log(response);
-        alert(response);
+        //alert(response);
     });
   }
 
@@ -120,16 +120,16 @@
       switch(childKey){
         case "0":
           document.getElementById("class1").innerHTML = childData;
-          yeezy(childData);
+          getAllClassmates(childData);
           //localStorage.setItem("firstClass", JSON.stringify(childData));
           break;
       }
     });
   });
-  function yeezy(ayo){
+  function getAllClassmates(fromClass){
     document.getElementById("name").innerHTML = "";
     var nameList = "";
-    var classRef = firebase.database().ref("Classes/" + ayo);
+    var classRef = firebase.database().ref("Classes/" + fromClass);
 classRef.on('value', function(snapshot){
   snapshot.forEach(function(childSnapshot){
     var childData = childSnapshot.val().userName;
@@ -156,12 +156,7 @@ classRef.on('value', function(snapshot){
   </center>
 
   <center>
-    <h3>classmate list example</h3>
-
-    <h3>William Quan</h3>
-    <h3>Issaic Chu</h3>
-    <h3>Yeezy Boost</h3>
-    <h3>...</h3>
+    <h3>ALL OF YOUR CLASSMATES</h3>
     <!-- list style is none css!! -->
     <ul id = "name">
     </ul>
