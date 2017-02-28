@@ -60,8 +60,19 @@
       statusChangeCallback(response);
     });
   }
+  var facebookFriends = [""];
   function getFriendsList(){
   FB.api('me/friends', function(response) {
+
+        response.data.forEach( function (f) {
+          facebookFriends.push(f.name);
+          console.log(f.name);
+
+          //console.log(JSON.parse(f));
+          //console.log(f[0]);
+          //console.log(f[0].name);
+          //console.log("Tinder for studying: " +  f);
+        });
         // Insert your code here
         console.log(response);
         //alert(response);
@@ -89,20 +100,20 @@
     getFriendsList();
     console.log('Welcome!  Fetching your information.... ');
 
-/*
+    /*
     FB.api(
     "/{user-id}/friends",
     function (response) {
       alert(response.data);
       if (response && !response.error) {
 
-        alert(response.data);
+        //alert(response.data);
       }else{
         alert("error finding the friendslist");
       }
     }
-);
-*/
+);*/
+
 }
 </script>
 
@@ -133,12 +144,21 @@
 classRef.on('value', function(snapshot){
   snapshot.forEach(function(childSnapshot){
     var childData = childSnapshot.val().userName;
+//forEach( function (f) {
+    facebookFriends.forEach( function (f) {
+    //if childData matches facebookFriends display
+    console.log("please print. comparing");
+    console.log(childData +" vs " + f);
+    if(childData == f){
+
     var newli = document.createElement('li');
     newli.appendChild(document.createTextNode(childData));
     document.getElementById('name').appendChild(newli);
     //nameList = "<li>" + childData + "</li>";
     //document.getElementById("name").innerHTML += nameList;
     console.log(childData);
+  }
+});
   });
 });
 }
