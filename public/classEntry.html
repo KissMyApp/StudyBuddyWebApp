@@ -28,10 +28,10 @@
 
             //grabs all four classes from the entry table
             function Redirect() {
-              var one = document.getElementById('class1').value;
-              var two = document.getElementById('class2').value;
-              var three = document.getElementById('class3').value;
-              var four = document.getElementById('class4').value;
+              var one = document.getElementById('class1').value.toUpperCase();
+              var two = document.getElementById('class2').value.toUpperCase();
+              var three = document.getElementById('class3').value.toUpperCase();
+              var four = document.getElementById('class4').value.toUpperCase();
 
               //checks to see if null
               //implemented required (couldn't do a submission b.c needed onclick)
@@ -69,21 +69,16 @@
 <center><h3>What classes are you taking?</h3></center>
 <form>
   <label for = "class1">Class1:</label>
-  <input id="class1" type="text" placeholder = "ECE111" /></br>
+  <input id="class1" type="text" placeholder = "ECE111" /><br>
   <label for = "class2">Class2:</label>
-  <input id="class2" type="text" placeholder = "CSE120" /></br>
+  <input id="class2" type="text" placeholder = "CSE120" /><br>
   <label for = "class3">Class3:</label>
-  <input id="class3" type="text" placeholder = "MGT112" /></br>
+  <input id="class3" type="text" placeholder = "MGT112" /><br>
   <label for = "class4">Class4:</label>
-  <input id="class4" type="text" placeholder = "PHYS2C" /></br></br>
+  <input id="class4" type="text" placeholder = "PHYS2C" /><br><br>
   <input type="button" value="Submit" onclick = "Redirect();"/>
 </form>
 
-<!---
-<center>
-  <h2><a href="main.html"> ENTER </a></h2>
-</center>
--->
 </body>
 
 </html>

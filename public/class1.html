@@ -122,7 +122,7 @@
   var userName = JSON.parse(localStorage.getItem("name"));
   const database = firebase.database().ref("/Users/" + userName + "/classes").child("classList");
   var classRef = firebase.database().ref("Classes/");
-  var class1z
+  var class1z;
   database.on('value', function(snapshot) {
     snapshot.forEach(function(childSnapshot) {
       var childKey = childSnapshot.key;
